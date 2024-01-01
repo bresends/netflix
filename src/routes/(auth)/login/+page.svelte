@@ -1,7 +1,21 @@
-<script lang="ts">
-	import type { PageData } from './$types';
-
-	export let data: PageData;
+<script>
+	import { signIn, signOut } from '@auth/sveltekit/client';
+	import { page } from '$app/stores';
 </script>
 
-Hey, I'm a page!
+<h1>SvelteKit Auth Example</h1>
+<p>
+	{#if $page.data.session}
+		{#if $page.data.session.user?.image}
+			<img src={$page.data.session.user.image} alt="avatar" class="w-24 rounded-full" />
+		{/if}
+		<span class="signedInText">
+			<small>Signed in as</small><br />
+			<strong>{$page.data.session.user?.name ?? 'User'}</strong>
+		</span>
+		<button on:click={() => signOut()} class="button">Sign out</button>
+	{:else}
+		<span class="notSignedInText">You are not signed in</span>
+		<button on:click={() => signIn('github')}>Sign In with GitHub</button>
+	{/if}
+</p>
