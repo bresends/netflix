@@ -13,10 +13,15 @@ import { db } from '$lib/db.server';
 export const handle = SvelteKitAuth({
 	adapter: PrismaAdapter(db),
 	providers: [
-		GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET }),
+		GitHub({
+			clientId: GITHUB_ID,
+			clientSecret: GITHUB_SECRET,
+			allowDangerousEmailAccountLinking: true
+		}),
 		GoogleProvider({
 			clientId: GOOGLE_CLIENT_ID,
-			clientSecret: GOOGLE_CLIENT_SECRET
+			clientSecret: GOOGLE_CLIENT_SECRET,
+			allowDangerousEmailAccountLinking: true
 		})
 	]
 });
