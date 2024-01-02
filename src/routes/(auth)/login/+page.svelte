@@ -42,14 +42,14 @@
 	</form>
 
 	<div class="mt-5 text-sm text-gray-500">
-		Novo por aqui? <a href="/signup" class="text-white hover:underline">Crie agora</a>
+		Novo por aqui? <a href="/signup" class="text-white hover:underline">Crie uma conta</a>
 	</div>
 
 	<div class="mt-6 flex w-full items-center justify-center gap-x-3">
-		<Button variant="outline" size="icon">
+		<Button variant="outline" size="icon" on:click={() => signIn('github')}>
 			<GithubIcon class="h-5 w-5" />
 		</Button>
-		<Button variant="outline" size="icon">
+		<Button variant="outline" size="icon" on:click={() => signIn('google')}>
 			<img src={GoogleIcon} alt="Google Icon" class="h-7 w-7" />
 		</Button>
 	</div>
