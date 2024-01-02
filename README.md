@@ -1,5 +1,5 @@
 - Challenges
-    - Auth 
+    - Auth (protected routes)
     - Layout Groups
 
 
