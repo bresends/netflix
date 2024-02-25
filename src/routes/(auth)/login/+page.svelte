@@ -5,13 +5,25 @@
 	import Input from '$lib/components/ui/input/input.svelte';
 	import { signIn } from '@auth/sveltekit/client';
 	import { GithubIcon } from 'lucide-svelte';
+
+	let email = '';
+
+	const emailSignin = () => {
+		signIn('email', { email });
+	};
 </script>
 
 <div class="mt-24 rounded bg-black/80 p-6 py-10 md:mt-0 md:max-w-sm md:px-14">
-	<form method="POST" use:enhance>
+	<form on:submit|preventDefault={emailSignin}>
 		<h1 class="text-3xl font-semibold text-white">Entrar</h1>
 		<div class="mt-5 space-y-4">
-			<Input type="text" placeholder="Email" name="email" class="inline-block w-full bg-[#333]" />
+			<Input
+				type="text"
+				bind:value={email}
+				placeholder="Email"
+				name="email"
+				class="inline-block w-full bg-[#333]"
+			/>
 			<Input
 				type="password"
 				placeholder="Senha"
